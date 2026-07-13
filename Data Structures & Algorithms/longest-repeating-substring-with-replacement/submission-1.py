@@ -1,0 +1,32 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        if len(s) == 0: 
+            return 0
+        
+        count = {}
+        longest = 0
+        l = 0
+
+        for r in range(len(s)):
+            count[s[r]] = count.get(s[r], 0) + 1
+            max_freq = max(count.values())
+
+            #if window is invalid, fix 
+            if (r - l + 1) - max_freq > k:
+                count[s[l]] -= 1
+                l += 1
+
+            longest = max(longest, r - l + 1)
+
+        return longest
+
+
+            
+
+            
+            
+
+            
+
+            
+            
